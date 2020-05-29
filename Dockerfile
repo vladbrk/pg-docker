@@ -29,6 +29,10 @@ RUN sed "s/^#listen_addresses.*/listen_addresses = '*'/" postgresql.conf > postg
 RUN rm postgresql.conf
 RUN mv postgresql.conf.temp postgresql.conf
 
+# Add user admin
+RUN adduser --disabled-password --gecos "" admin
+RUN echo "admin:123"|chpasswd
+
 EXPOSE 5432
 EXPOSE 22
 
